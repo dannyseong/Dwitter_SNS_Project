@@ -59,9 +59,9 @@
   }
   ```
   - Response `201`
-  ```json
+  ```
   {
-    tweet
+    dweet
   }
   ```
 - `PUT` /dweets/:id
