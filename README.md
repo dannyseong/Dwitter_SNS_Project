@@ -10,7 +10,7 @@
 
 ### 1. Define `Dweet` Schema
 
-```json
+```
 {
   id: string, // tweet id
   text: string, // tweet text
@@ -42,15 +42,15 @@
 - `GET` /dweets/:id
   - get dweet by id
   - Response `200`
-  ```json
+  ```
   {
-    tweet
+    dweet
   }
   ```
 - `POST` /dweets
   - creating new tweet
   - Request
-  ```json
+  ```
   {
     text,
     name,
@@ -69,7 +69,7 @@
   - updating tweet
   - Request
 
-  ```json
+  ```
   {
   	text
   }
@@ -77,7 +77,7 @@
 
   - Response `200`
 
-  ```json
+  ```
   {
   	dweet
   }
