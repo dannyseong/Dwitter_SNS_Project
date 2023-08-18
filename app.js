@@ -2,10 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+require('express-async-errors');
 
 const dweetRouter = require('./router/dweets');
 
-const app = express('');
+const app = express();
 
 app.use(cors()); // CORS Apply
 app.use(morgan('tiny'));
