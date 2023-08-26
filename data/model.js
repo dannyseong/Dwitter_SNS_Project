@@ -19,19 +19,19 @@ let dweets = [
   },
 ];
 
-function getAll() {
+async function getAll() {
   return dweets;
 }
 
-function getByUsername(username) {
+async function getByUsername(username) {
   return dweets.filter((d) => d.username === username);
 }
 
-function getById(id) {
+async function getById(id) {
   return dweets.find((t) => t.id === id);
 }
 
-function create(text, username, name, url) {
+async function create(text, username, name, url) {
   const dweet = {
     id: uuidv4(),
     text,
@@ -43,13 +43,13 @@ function create(text, username, name, url) {
   return dweet;
 }
 
-function update(id, text) {
+async function update(id, text) {
   const dweet = dweets.find((d) => d.id === id);
   dweet.text = text;
   return dweet;
 }
 
-function remove(id) {
+async function remove(id) {
   dweets = dweets.filter((d) => d.id !== id);
 }
 

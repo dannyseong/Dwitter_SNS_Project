@@ -1,37 +1,37 @@
 const dweetsModel = require('../data/model');
 
-function getDweets(req, res, next) {
+async function getDweets(req, res, next) {
   const username = req.query.username;
-  const data = username
+  const data = await (username
     ? dweetsModel.getByUsername(username)
-    : dweetsModel.getAll();
+    : dweetsModel.getAll());
   res.status(200).json(data);
   next();
 }
 
-function getDweetsById(req, res, next) {
+async function getDweetsById(req, res, next) {
   const id = req.params.id;
-  const data = dweetsModel.getById(id);
+  const data = await dweetsModel.getById(id);
   res.status(200).json(data);
   next();
 }
 
-function createDweets(req, res, next) {
+async function createDweets(req, res, next) {
   const { text, username, name, url } = req.body;
-  res.status(201).json(dweetsModel.create(text, username, name, url));
+  res.status(201).json(await dweetsModel.create(text, username, name, url));
   next();
 }
 
-function updateDweets(req, res, next) {
+async function updateDweets(req, res, next) {
   const id = req.params.id;
   const text = req.body.text;
-  res.status(200).json(dweetsModel.update(id, text));
+  res.status(200).json(await dweetsModel.update(id, text));
   next();
 }
 
-function deleteDweets(req, res, next) {
+async function deleteDweets(req, res, next) {
   const id = req.params.id;
-  dweetsModel.remove(id);
+  await dweetsModel.remove(id);
   res.sendStatus(204);
   next();
 }
