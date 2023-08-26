@@ -15,6 +15,11 @@ app.use(express.json());
 
 app.use('/dweets', dweetRouter);
 
+app.use((error, req, res, next) => {
+  console.error(error);
+  res.status(500).json({ error: 'An unexpected error has occured' });
+});
+
 app.listen(8080, () => {
   console.log('SERVER IS RUNNING ON PORT 8080');
 });
