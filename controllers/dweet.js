@@ -17,8 +17,8 @@ async function getDweetsById(req, res, next) {
 }
 
 async function createDweets(req, res, next) {
-  const { text, userId } = req.body;
-  return res.status(201).json(await dweetsModel.create(text, userId));
+  const { text } = req.body;
+  return res.status(201).json(await dweetsModel.create(text, req.userId));
   next();
 }
 
