@@ -1,26 +1,28 @@
 const { v4: uuidv4 } = require('uuid');
+const userRepository = require('../data/auth');
 
 let dweets = [
   {
     id: '1', // tweet id
     text: 'First Message', // tweet text
     createdAt: Date.now().toString(), // create date
-    name: 'danny', // user name
-    username: 'danny', // user id
-    url: 'https://avatars.githubusercontent.com/u/99000722?v=4', // User profile image
+    userId: '1',
   },
   {
     id: '2', // tweet id
     text: 'Second Message', // tweet text
     createdAt: Date.now().toString(), // create date
-    name: 'nari', // user name
-    username: 'nari', // user id
-    url: 'https://static.vecteezy.com/system/resources/previews/002/002/257/original/beautiful-woman-avatar-character-icon-free-vector.jpg', // User profile image
+    userId: '1',
   },
 ];
 
 async function getAll() {
-  return dweets;
+  return Promise.all(
+    dweets.map(async (dweet) => {
+      const { username, name, url } = await userRepository.findById(dweet.id);
+      return { ...dweet, username, name, url };
+    })
+  );
 }
 
 async function getByUsername(username) {
