@@ -1,4 +1,4 @@
-const dweetsModel = require('../data/model');
+const dweetsModel = require('../data/dweet');
 
 async function getDweets(req, res, next) {
   const username = req.query.username;
@@ -17,10 +17,8 @@ async function getDweetsById(req, res, next) {
 }
 
 async function createDweets(req, res, next) {
-  const { text, username, name, url } = req.body;
-  return res
-    .status(201)
-    .json(await dweetsModel.create(text, username, name, url));
+  const { text, userId } = req.body;
+  return res.status(201).json(await dweetsModel.create(text, userId));
   next();
 }
 
