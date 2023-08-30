@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const userRepository = require('../data/auth');
+const config = require('../config');
 
 const AUTH_ERROR = { message: 'Authentication Error' };
 
@@ -11,7 +12,7 @@ async function isAuth(req, res, next) {
 
   const token = authHeader.split(' ')[1];
   // TODO: Make it secure
-  jwt.verify(token, 'asdfasdf123ffadfasdf134', async (error, decoded) => {
+  jwt.verify(token, config.jwt.secretKey, async (error, decoded) => {
     if (error) {
       return res.status(401).json(AUTH_ERROR);
     }
